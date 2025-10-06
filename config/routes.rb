@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get "backlog_items/index"
-  get "backlog_items/create"
-  get "backlog_items/update"
-  get "backlog_items/destroy"
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -12,6 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :backlog_items
+  resources :games
   root "backlog_items#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
