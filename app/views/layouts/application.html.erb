@@ -26,6 +26,7 @@
     <nav>
       <%= button_to "Log out", session_path, method: :delete if authenticated?%>
     </nav>
+    <h1>Game Backlogger</h1>
 
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
