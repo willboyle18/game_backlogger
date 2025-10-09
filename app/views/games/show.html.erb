@@ -1,0 +1,10 @@
+<h1><%= @game.name %></h1>
+
+<% if @backlog_item&.persisted? %>
+  <p>Already in your backlog. <%= link_to "View Backlog", backlog_items_path %></p>
+<% else %>
+  <%= form_with model: @backlog_item, url: backlog_items_path, local: true do |f| %>
+    <%= f.hidden_field :game_id, value: @game.id %>
+    <%= f.submit "Add to my Backlog" %>
+  <% end %>
+<% end %>

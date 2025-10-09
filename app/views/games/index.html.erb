@@ -1,0 +1,7 @@
+<h1>All Games</h1>
+<p><%= link_to "New Game", new_game_path %> | <%= link_to "My Backlog", backlog_items_path %></p>
+<ul>
+  <%= @games.each do |game| %>
+    <li><%= link_to game.name, game_path(game) %></li>
+  <% end %>
+</ul>

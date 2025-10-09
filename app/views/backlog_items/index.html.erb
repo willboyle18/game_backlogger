@@ -1,4 +1,11 @@
-<div>
-  <h1 class="font-bold text-4xl">BacklogItems#index</h1>
-  <p>Find me in app/views/backlog_items/index.html.erb</p>
-</div>
+<h1>My Backlog</h1>
+<p><%= link_to "Add a Game", new_game_path %></p>
+
+<ul>
+  <% @backlog_items.each do |item| %>
+    <li>
+      <%= link_to item.game.name, game_path(item.game) %>
+      <%= button_to "Remove", backlog_item_path(item), method: :delete, form: { data: { turbo_confirm: "Remove from backlog?"}} %>
+    </li>
+  <% end %>
+</ul>

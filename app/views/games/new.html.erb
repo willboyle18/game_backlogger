@@ -1,0 +1,8 @@
+<h1>New Game</h1>
+<%= form_with model: @game, local: true do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div><%= f.submit "Create" %></div>
+<% end %>
