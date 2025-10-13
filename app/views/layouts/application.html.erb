@@ -22,14 +22,31 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <nav>
-      <%= button_to "Log out", session_path, method: :delete if authenticated?%>
-    </nav>
-    <h1>Game Backlogger</h1>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+      <nav class="mx-auto max-w-5xl px-4">
+        <div class="flex h-14 items-center gap-4">
+          <h1>Game Backlogger</h1>
+        </div>
+        <div class="ml-auto flex items-center gap-3 z-10">
+          <% if authenticated? %>
+            <%= button_to "Log out", session_path, method: :delete,
+                          class: "inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
+          <% else %>
+            <%= link_to "Sign in", new_session_path,
+                        class: "inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
 
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+
+    <footer class="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-500">
+      <p>&copy; <%= Time.now.year %> GameBacklogger</p>
+    </footer>
   </body>
 </html>
