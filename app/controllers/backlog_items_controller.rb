@@ -1,5 +1,5 @@
 class BacklogItemsController < ApplicationController
-  before_action :require_authentication
+  before_action :require_authentication,
   def index
     @backlog_items = Current.user.backlog_items.includes(:game).order(created_at: :desc)
   end
@@ -17,7 +17,11 @@ class BacklogItemsController < ApplicationController
   def update
   end
 
+
   def destroy
+    item = Current.user.backlog_items.find(params[:id])
+    item.destroy!
+    redirect_back fallback_location: backlog_items_path, notice: "Removed from your backlog"
   end
 
   private
