@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get "igdb/search", to: "igdb_searches#show", as: :igdb_search
+
   resources :backlog_items
   resources :games
   root "backlog_items#index"
