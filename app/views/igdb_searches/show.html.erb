@@ -38,6 +38,10 @@
             alt="<%= g["name"] %> cover"
             class="h-12 w-9 rounded object-cover ml-4" />
         <% end %>
+
+        <%= button_to "Add to backlog", backlog_items_path(igdb_id: g["id"], q: @query),
+                      method: :post,
+                      class: "cursor-pointer border"%>
       </li>
     <% end %>
   </ul>
