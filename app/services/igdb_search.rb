@@ -1,4 +1,3 @@
-require "dotenv/load"
 require "net/https"
 require "json"
 require "uri"
@@ -30,14 +29,6 @@ class IgdbSearch
     Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       res = http.request(req)
       res.is_a?(Net::HTTPSuccess) ? JSON.parse(res.body) : []
-
-      # res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) { |http| http.request(req) }
-      #
-      # unless res.is_a?(Net::HTTPSuccess)
-      #   raise "[IGDB] #{res.code} #{res.message}\n#{res.body}"
-      # end
-      #
-      # JSON.parse(res.body)
     end
   end
 end

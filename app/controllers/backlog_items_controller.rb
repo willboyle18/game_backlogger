@@ -6,7 +6,6 @@ class BacklogItemsController < ApplicationController
 
   def create
     @backlog_item = Current.user.backlog_items.build(backlog_item_params)
-    puts "hello"
     if @backlog_item.save
       redirect_back fallback_location: backlog_items_path, notice: "Added to your backlog"
     else
