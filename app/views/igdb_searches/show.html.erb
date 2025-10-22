@@ -22,7 +22,7 @@
     <% @results.each do |g| %>
       <li class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-3">
         <div class="min-w-0">
-          <div class="font-medium text-slate-900 truncate"><%= g["name"] %></div>
+          <div class="font-medium text-slate-900 truncate"><%= link_to g["name"], game_path(igdb_id: g["id"]) %></div>
           <div class="text-sm text-slate-600">
             <% year = g["first_release_date"] ? Time.at(g["first_release_date"]).year : "Unknown" %>
             <span><%= year %></span>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "igdb/search", to: "igdb_searches#show", as: :igdb_search
 
   resources :backlog_items
-  resources :games
+  resources :games, only: [:show], param: :igdb_id
   root "backlog_items#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
