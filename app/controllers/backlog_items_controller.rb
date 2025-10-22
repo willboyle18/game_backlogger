@@ -16,7 +16,7 @@ class BacklogItemsController < ApplicationController
       flash[:alert] = "Already in backlog"
     end
 
-    redirect_back fallback_location: igdb_search_path(q: params[:q])
+    redirect_back fallback_location: request.path
   end
 
   def update
