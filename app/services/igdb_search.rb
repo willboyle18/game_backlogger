@@ -13,6 +13,7 @@ class IgdbSearch
     cover.image_id
     platforms.id
     total_rating
+    summary
   ].freeze
 
   def initialize
@@ -31,7 +32,7 @@ class IgdbSearch
     req["Accept"]        = "application/json"
     req["Content-Type"]  = "text/plain"
     req.body = <<~APQ
-      fields id, name, first_release_date, cover.url, platforms.name, genres.name, slug;
+      fields id, name, first_release_date, cover.url, platforms.name, genres.name, slug, summary;
       search "#{query}";
       limit #{limit};
     APQ
