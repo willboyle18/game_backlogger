@@ -7,3 +7,8 @@
     loading="lazy" />
 <% end %>
 <p><%= @game.summary %></p>
+
+<div>
+  Platforms:
+  <%= @platform_names.join(", ") %>
+</div>

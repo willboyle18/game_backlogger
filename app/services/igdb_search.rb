@@ -65,4 +65,29 @@ class IgdbSearch
       JSON.parse(res.body).first
     end
   end
+
+  def platforms_by_ids(ids, fields: 'id, name')
+    ids = Array(ids).compact.map { |x| Integer(x) rescue nil }.compact.uniq
+    return [] if ids.empty?
+
+    fields_list = Array(fields).join(", ")
+    uri = URI("#{BASE}/platforms")
+    req = Net::HTTP::Post.new(uri)
+    req["Client-ID"]     = @client_id
+    req["Authorization"] = "Bearer #{@access_token}"
+    req["Accept"]        = "application/json"
+    req["Content-Type"]  = "text/plain"
+    req.body = <<~APQ
+      fields #{fields_list};
+      where id = (#{ids.join(",")});
+      limit #{ids.size};
+    APQ
+
+    Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      res = http.request(req)
+      return nil unless res.is_a?(Net::HTTPSuccess)
+      JSON.parse(res.body)
+    end
+  end
+
 end

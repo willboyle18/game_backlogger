@@ -19,9 +19,20 @@ class GamesController < ApplicationController
   def show
     igdb_id = params.require(:igdb_id).to_i
     @game = Game.find_by(igdb_id:) || insert_game_from_igdb!(igdb_id)
+    @platform_names = get_platforms(@game.platform_ids)
   end
 
   private
+
+  def get_platforms(platform_ids)
+    ids = Array(platform_ids).compact
+    return [] if ids.empty?
+
+    plats = IgdbSearch.new.platforms_by_ids(ids, fields: %w[id name abbreviation])
+    by_id = plats.to_h { |p| [p["id"], (p["name"].presence).to_s] }
+    ids.filter_map { |id| by_id[id].presence }
+  end
+
 
   def insert_game_from_igdb!(igdb_id)
     Game.transaction(requires_new: true) do
