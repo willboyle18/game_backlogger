@@ -11,7 +11,7 @@
     <ul class="space-y-3">
       <% @backlog_items.each do |item| %>
         <li class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm hover:shadow transition">
-          <%= link_to item.game.name, game_path(item.game),
+          <%= link_to item.game.name, game_path(item.game.igdb_id),
                       class: "font-medium text-slate-800 hover:underline" %>
 
           <%= button_to "Remove",
