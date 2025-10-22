@@ -1,7 +1,7 @@
 <h1><%= @game.name %></h1>
 <% if @game.cover_image_id.present? %>
   <img
-    src="https://images.igdb.com/igdb/image/upload/t_cover_big/<%= @game.cover_image_id %>.jpg"
+    src=<%= @game.cover_url %>
     alt="<%= @game.name %> cover"
     class="h-12 w-9 rounded object-cover ml-4"
     loading="lazy" />
@@ -11,4 +11,9 @@
 <div>
   Platforms:
   <%= @platform_names.join(", ") %>
+</div>
+
+<div>
+  Release Year:
+  <%= @game.release_year %>
 </div>

@@ -16,8 +16,4 @@ class Game < ApplicationRecord
     return nil if cover_image_id.blank?
     "https://images.igdb.com/igdb/image/upload/#{size}/#{cover_image_id}.jpg"
   end
-
-  def platform_id_list
-    Array(platform_ids).compact
-  end
 end
