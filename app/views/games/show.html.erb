@@ -20,7 +20,7 @@
 
 <div>
   <% if Current.user.backlog_items.exists?(game_id: @game.id) %>
-    <%= button_to "Remove",
+    <%= button_to "Remove from backlog",
                   backlog_item_path(Current.user.backlog_items.find_by(game_id: @game.id)),
                   method: :delete,
                   form: { data: { turbo_confirm: "Remove from backlog?" } },
