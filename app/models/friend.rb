@@ -3,7 +3,7 @@ class Friend < ApplicationRecord
   belongs_to :friend, class_name: "User"
 
   validates :user_id, uniqueness: { scope: :friend_id }
-  validates :not_duplicate_in_reverse
+  validate :not_duplicate_in_reverse
 
 
   scope :pending, -> {where(status: "pending")}

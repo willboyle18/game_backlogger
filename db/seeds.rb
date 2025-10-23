@@ -19,3 +19,9 @@ User.create!(
   password: "password",
   password_confirmation: "password"
 )
+
+Friend.create!(
+  user_id: 1,
+  friend_id: 2,
+  status: "accepted"
+)
