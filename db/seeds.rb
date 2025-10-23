@@ -27,6 +27,13 @@ User.create!(
 )
 
 
+User.create!(
+  email_address: "test4@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+
 # Accepted request from test1 to test2
 Friend.create!(
   user_id: 1,

@@ -11,7 +11,15 @@ class FriendsController < ApplicationController
   end
 
   def search
+    query = params[:q].to_s.strip
+    @users = User.where("email_address ILIKE ?", "%#{query}%")
+                 .where.not(id: Current.user.id)
 
+    @current_friends   = Current.user.all_friends
+    @incoming_requests = Current.user.incoming_requests
+    @outgoing_requests = Current.user.outgoing_requests
+
+    render :index
   end
 
   def create
