@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :backlog_items
   resources :games, param: :igdb_id
   resources :friends
+  get "friends/search", to: "friends#search", as: :search_friends
   root "backlog_items#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)

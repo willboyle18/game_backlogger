@@ -1,1 +1,23 @@
-<h1>Friends List Page</h1>
+<h1 class="text-2xl font-bold mb-4">Friends</h1>
+
+<!-- Current Friends -->
+<section class="mb-8">
+  <h2 class="text-xl font-semibold mb-2">Current Friends</h2>
+  <% if @current_friends.any? %>
+    <ul>
+      <% @current_friends.each do |f| %>
+        <li class="flex justify-between border-b py-2">
+          <span><%= f.email_address %></span>
+
+          <% friendship = Friend.find_by(user: Current.user, friend: f) ||
+                          Friend.find_by(user: f, friend: Current.user) %>
+
+          <%= button_to "Remove", friend_path(friendship),
+                        method: :delete, class: "text-red-600 hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500">No friends yet.</p>
+  <% end %>
+</section>

@@ -6,4 +6,24 @@ class User < ApplicationRecord
   has_many :games, through: :backlog_items
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  has_many :friends, class_name: "Friend", foreign_key: "user_id", dependent: :destroy
+
+  has_many :inverse_friends, class_name: "Friend", foreign_key: "friend_id", dependent: :destroy
+
+  def all_friends
+    outgoing = friends.accepted.includes(:friend).map(&:friend)
+    incoming = inverse_friends.accepted.includes(:user).map(&:user)
+    (outgoing + incoming).uniq
+  end
+
+  def outgoing_requests
+    outgoing = friends.pending.includes(:friend).map(&:friend)
+    outgoing.uniq
+  end
+
+  def incoming_requests
+    incoming = inverse_friends.pending.includes(:user).map(&:user)
+    incoming.uniq
+  end
 end
