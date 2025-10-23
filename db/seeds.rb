@@ -20,8 +20,30 @@ User.create!(
   password_confirmation: "password"
 )
 
+User.create!(
+  email_address: "test3@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+
+# Accepted request from test1 to test2
 Friend.create!(
   user_id: 1,
   friend_id: 2,
   status: "accepted"
+)
+
+# Outgoing request from test2 to test3
+Friend.create!(
+  user_id: 2,
+  friend_id: 3,
+  status: "pending"
+)
+
+# Outgoing request from test3 to test1
+Friend.create!(
+  user_id: 3,
+  friend_id: 1,
+  status: "pending"
 )

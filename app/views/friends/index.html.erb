@@ -21,3 +21,23 @@
     <p class="text-gray-500">No friends yet.</p>
   <% end %>
 </section>
+
+<!-- Outgoing -->
+<section class="mb-8">
+  <h2 class="text-xl font-semibold mb-2">Outgoing Requests</h2>
+  <% @outgoing_requests.each do |req| %>
+    <p><%= req.email_address %> (pending)</p>
+  <% end %>
+</section>
+
+
+<!-- Incoming -->
+<section class="mb-8">
+  <h2 class="text-xl font-semibold mb-2">Incoming Requests</h2>
+  <% @incoming_requests.each do |req| %>
+    <div class="flex items-center justify-between">
+      <span><%= req.email_address %></span>
+      <%= button_to "Accept", friend_path(req), method: :patch, class: "text-green-600" %>
+    </div>
+  <% end %>
+</section>
