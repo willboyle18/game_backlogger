@@ -1,0 +1,10 @@
+<!-- Incoming -->
+<section id="incoming_requests" class="mb-8">
+  <h2 class="text-xl font-semibold mb-2">Incoming Requests</h2>
+  <% @incoming_requests.each do |req| %>
+    <div class="flex items-center justify-between">
+      <span><%= req.email_address %></span>
+      <%= button_to "Accept", friend_path(req), method: :patch, class: "cursor-pointer text-green-600" %>
+    </div>
+  <% end %>
+</section>

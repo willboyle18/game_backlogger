@@ -23,14 +23,47 @@ class FriendsController < ApplicationController
   end
 
   def create
+    friend_id = params[:friend_id]
 
+    begin
+      Friend.create!(
+        user_id: Current.user.id,
+        friend_id: friend_id,
+        status: "pending"
+      )
+    rescue ActiveRecord::RecordNotUnique
+      puts "friend record already exists"
+    end
+
+    @current_friends   = Current.user.all_friends
+    @incoming_requests = Current.user.incoming_requests
+    @outgoing_requests = Current.user.outgoing_requests
+    render :index
   end
 
   def update
+    friend = Friend.find(params[:id])
+
+    friend.update(status: "accepted")
+
+    refresh_friend_lists
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to friends_path }
+    end
 
   end
 
   def destroy
 
+  end
+
+  private
+
+  def refresh_friend_lists
+    @current_friends = Current.user.all_friends
+    @outgoing_requests = Current.user.outgoing_requests
+    @incoming_requests = Current.user.incoming_requests
   end
 end

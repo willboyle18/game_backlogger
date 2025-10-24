@@ -1,0 +1,12 @@
+<%= turbo_stream.replace "incoming_requests" do %>
+  <%= render partial: "incoming_requests", locals: { incoming_requests: Current.user.incoming_requests } %>
+<% end %>
+
+<%= turbo_stream.replace "current_friends" do %>
+  <%= render partial: "current_friends", locals: { current_friends: Current.user.all_friends } %>
+<% end %>
+
+
+<%= turbo_stream.replace "outgoing_requests" do %>
+  <%= render partial: "outgoing_requests", locals: { outgoing_requests: Current.user.outgoing_requests } %>
+<% end %>
