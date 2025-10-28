@@ -19,7 +19,7 @@
         <li class="flex justify-between border-b py-2">
           <span><%= user.email_address %></span>
           <%= button_to "Add Friend", friends_path(friend_id: user.id),
-                        method: :post, class: "bg-gray-200 px-2 py-1 rounded hover:bg-gray-300" %>
+                        method: :post, class: "cursor-pointer bg-gray-200 px-2 py-1 rounded hover:bg-gray-300" %>
         </li>
       <% end %>
     </ul>

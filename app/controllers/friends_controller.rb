@@ -15,9 +15,7 @@ class FriendsController < ApplicationController
     @users = User.where("email_address ILIKE ?", "%#{query}%")
                  .where.not(id: Current.user.id)
 
-    @current_friends   = Current.user.all_friends
-    @incoming_requests = Current.user.incoming_requests
-    @outgoing_requests = Current.user.outgoing_requests
+    refresh_friend_lists
 
     render :index
   end
@@ -35,10 +33,12 @@ class FriendsController < ApplicationController
       puts "friend record already exists"
     end
 
-    @current_friends   = Current.user.all_friends
-    @incoming_requests = Current.user.incoming_requests
-    @outgoing_requests = Current.user.outgoing_requests
-    render :index
+    refresh_friend_lists
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to friends_path }
+    end
   end
 
   def update
