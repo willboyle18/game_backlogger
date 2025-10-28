@@ -11,7 +11,7 @@
                           Friend.find_by(user: f, friend: Current.user) %>
 
           <%= button_to "Remove", friend_path(friendship),
-                        method: :delete, class: "text-red-600 hover:underline" %>
+                        method: :delete, class: "cursor-pointer text-red-600 hover:underline" %>
         </li>
       <% end %>
     </ul>

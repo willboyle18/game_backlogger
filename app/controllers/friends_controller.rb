@@ -56,7 +56,15 @@ class FriendsController < ApplicationController
   end
 
   def destroy
+    friend = Friend.find(params[:id])
+    friend.destroy
 
+    refresh_friend_lists
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to friends_path }
+    end
   end
 
   private
