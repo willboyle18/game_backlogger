@@ -41,6 +41,19 @@ class FriendsController < ApplicationController
     end
   end
 
+  def show
+    friendship = Friend.find(params[:id])
+
+
+    if Current.user.id == friendship.friend_id
+      friend_id = friendship.user_id
+    else
+      friend_id = friendship.friend_id
+    end
+    @friend = User.find(friend_id)
+    @backlog_items = @friend.backlog_items.includes(:game).order(created_at: :desc)
+  end
+
   def update
     friend = Friend.find(params[:id])
 
