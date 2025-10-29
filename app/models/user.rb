@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_many :inverse_friends, class_name: "Friend", foreign_key: "friend_id", dependent: :destroy
 
+  validates :username, presence: true, uniqueness: true
+  validates :email_address, presence: true, uniqueness: true
+  validates :password, confirmation: true
+
   def all_friends
     outgoing = friends.accepted.includes(:friend).map(&:friend)
     incoming = inverse_friends.accepted.includes(:user).map(&:user)

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :games, param: :igdb_id
   get "friends/search", to: "friends#search", as: :search_friends
   resources :friends
+  resource :registration, only: [:new, :create]
   root "backlog_items#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)

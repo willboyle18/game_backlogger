@@ -1,7 +1,6 @@
 class FriendsController < ApplicationController
   before_action :require_authentication
 
-
   def index
     @current_friends = Current.user.all_friends
 
@@ -43,7 +42,6 @@ class FriendsController < ApplicationController
 
   def show
     friendship = Friend.find(params[:id])
-
 
     if Current.user.id == friendship.friend_id
       friend_id = friendship.user_id
