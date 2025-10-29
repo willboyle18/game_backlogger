@@ -10,18 +10,21 @@
 
 User.create!(
   email_address: "test@example.com",
+  username: "test",
   password: "password",
   password_confirmation: "password"
 )
 
 User.create!(
   email_address: "test2@example.com",
+  username: "test2",
   password: "password",
   password_confirmation: "password"
 )
 
 User.create!(
   email_address: "test3@example.com",
+  username: "test3",
   password: "password",
   password_confirmation: "password"
 )
@@ -29,6 +32,7 @@ User.create!(
 
 User.create!(
   email_address: "test4@example.com",
+  username: "test4",
   password: "password",
   password_confirmation: "password"
 )
