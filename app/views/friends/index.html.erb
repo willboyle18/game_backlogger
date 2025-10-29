@@ -17,7 +17,7 @@
     <ul class="mt-4">
       <% @users.each do |user| %>
         <li class="flex justify-between border-b py-2">
-          <span><%= user.email_address %></span>
+          <span><%= user.username %></span>
           <%= button_to "Add Friend", friends_path(friend_id: user.id),
                         method: :post, class: "cursor-pointer bg-gray-200 px-2 py-1 rounded hover:bg-gray-300" %>
         </li>

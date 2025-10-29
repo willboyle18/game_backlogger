@@ -3,7 +3,7 @@
   <h2 class="text-xl font-semibold mb-2">Incoming Requests</h2>
   <% @incoming_requests.each do |req| %>
     <div class="flex items-center justify-between">
-      <span><%= req.email_address %></span>
+      <span><%= req.username %></span>
       <% friendship = Friend.find_by(user: Current.user, friend: req) ||
                       Friend.find_by(user: req, friend: Current.user) %>
       <%= button_to "Accept", friend_path(friendship), method: :patch, class: "cursor-pointer text-green-600" %>

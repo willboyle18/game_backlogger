@@ -2,6 +2,6 @@
 <section id="outgoing_requests" class="mb-8">
   <h2 class="text-xl font-semibold mb-2">Outgoing Requests</h2>
   <% @outgoing_requests.each do |req| %>
-    <p><%= req.email_address %> (pending)</p>
+    <p><%= req.username %> (pending)</p>
   <% end %>
 </section>

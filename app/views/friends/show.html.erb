@@ -1,10 +1,10 @@
 <div class="mb-8">
   <div class="flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-semibold tracking-tight"><%= @friend.email_address %>'s Backlog</h1>
+    <h1 class="text-2xl font-semibold tracking-tight"><%= @friend.username %>'s Backlog</h1>
   </div>
 
   <% if @backlog_items.empty? %>
-    <p class="text-slate-600"><%= @friend.email_address %>'s backlog is empty.</p>
+    <p class="text-slate-600"><%= @friend.username %>'s backlog is empty.</p>
   <% else %>
     <ul class="space-y-3">
       <% @backlog_items.each do |item| %>
