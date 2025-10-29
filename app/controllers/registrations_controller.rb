@@ -17,7 +17,7 @@ class RegistrationsController < ApplicationController
       start_new_session_for(@user)
       redirect_to after_authentication_url, notice: "Welcome! You have signed up successfully."
     else
-      render :new, status: :unprocessable_entity
+      render "sessions/new", status: :unprocessable_entity
     end
   end
 
