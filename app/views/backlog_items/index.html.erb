@@ -22,3 +22,24 @@
     </ul>
   <% end %>
 </div>
+
+<div class="mb-8">
+  <h1>Reviews</h1>
+  <% if @reviews.any? %>
+    <ul class="space-y-4">
+      <% @reviews.each do |review| %>
+        <li class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <div class="flex justify-between items-center">
+            <span class="font-medium text-slate-900"><%= review.user.username %></span>
+            <span class="text-sm text-slate-500"><%= time_ago_in_words(review.created_at) %> ago</span>
+            <span class="font-medium text-slate-900"><%= review.game.name %></span>
+          </div>
+
+          <p class="mt-2 text-slate-700 whitespace-pre-wrap"><%= review.body %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-slate-600">You have not left any reviews yet!</p>
+  <% end %>
+</div>

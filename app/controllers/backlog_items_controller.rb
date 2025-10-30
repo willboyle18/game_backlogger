@@ -2,6 +2,7 @@ class BacklogItemsController < ApplicationController
   before_action :require_authentication,
   def index
     @backlog_items = Current.user.backlog_items.includes(:game).order(created_at: :desc)
+    @reviews = Current.user.reviews.includes(:game).order(created_at: :desc)
   end
 
   def create
