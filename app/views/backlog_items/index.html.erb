@@ -12,6 +12,8 @@
           <%= link_to item.game.name, game_path(item.game.igdb_id),
                       class: "font-medium text-slate-800 hover:underline" %>
 
+          Status: <%= item.status.humanize %>
+
           <%= button_to "Remove",
                         backlog_item_path(item),
                         method: :delete,
