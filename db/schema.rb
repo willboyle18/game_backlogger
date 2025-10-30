@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_30_035808) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_30_212734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_30_035808) do
     t.bigint "game_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["game_id"], name: "index_backlog_items_on_game_id"
     t.index ["user_id", "game_id"], name: "index_backlog_items_on_user_id_and_game_id", unique: true
     t.index ["user_id"], name: "index_backlog_items_on_user_id"
