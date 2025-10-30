@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get "igdb/search", to: "igdb_searches#show", as: :igdb_search
 
   resources :backlog_items
-  resources :games, param: :igdb_id
+  resources :games, param: :igdb_id do
+    resources :reviews
+  end
   get "friends/search", to: "friends#search", as: :search_friends
   resources :friends
   resource :registration, only: [:new, :create]

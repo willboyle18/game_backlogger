@@ -32,3 +32,15 @@
                   class: "cursor-pointer border" %>
   <% end %>
 </div>
+
+<!-- Reviews -->
+<!-- Create a review -->
+<%= form_with model: [@game, @review], url: game_reviews_path(@game.igdb_id) do |f| %>
+  <%= f.text_area :body,
+                  placeholder: "Write your review...",
+                  rows: 6, cols: 60,
+                  class: "border border-slate-300 rounded-md px-3 py-2 w-full" %>
+
+  <%= f.submit "Post Review",
+               class: "bg-blue-600 hover:bg-blue-500 text-white rounded-md px-4 py-2 cursor-pointer mt-2" %>
+<% end %>

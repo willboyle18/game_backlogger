@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :backlog_items
   has_many :games, through: :backlog_items
 
+  has_many :reviews, dependent: :destroy
+  has_many :reviewed_games, through: :reviews, source: :game
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   has_many :friends, class_name: "Friend", foreign_key: "user_id", dependent: :destroy

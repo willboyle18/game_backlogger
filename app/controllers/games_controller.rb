@@ -20,6 +20,7 @@ class GamesController < ApplicationController
     igdb_id = params.require(:igdb_id).to_i
     @game = Game.find_by(igdb_id:) || insert_game_from_igdb!(igdb_id)
     @platform_names = get_platforms(@game.platform_ids)
+    @review = Review.new
   end
 
   private
