@@ -21,7 +21,7 @@ class IgdbSearch
     @access_token = ENV["IGDB_ACCESS_TOKEN"]
   end
 
-  def search_games(query, limit: 10)
+  def search_games(query, limit: 20, offset: 0)
     return [] if query.to_s.strip.empty?
 
 
@@ -32,9 +32,11 @@ class IgdbSearch
     req["Accept"]        = "application/json"
     req["Content-Type"]  = "text/plain"
     req.body = <<~APQ
-      fields id, name, first_release_date, cover.url, platforms.name, genres.name, slug, summary;
+      fields id, name, first_release_date, cover.url, platforms.name, genres.name, slug, summary, game_type;
       search "#{query}";
+      where game_type != (11, 12, 13, 14);
       limit #{limit};
+      offset #{offset};
     APQ
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|

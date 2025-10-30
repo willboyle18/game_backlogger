@@ -45,4 +45,21 @@
       </li>
     <% end %>
   </ul>
+  <% if @query.present? && @results.present? %>
+    <div class="mt-6 flex justify-between items-center">
+      <% if @page > 0 %>
+        <%= link_to "← Previous",
+                    igdb_search_path(q: @query, page: @page - 1),
+                    class: "rounded-md border border-slate-300 px-3 py-1 text-slate-700 hover:bg-slate-100" %>
+      <% else %>
+        <span></span>
+      <% end %>
+
+      <% if @results.size == 20 %>
+        <%= link_to "Next →",
+                    igdb_search_path(q: @query, page: @page + 1),
+                    class: "rounded-md border border-slate-300 px-3 py-1 text-slate-700 hover:bg-slate-100" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

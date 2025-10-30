@@ -4,6 +4,10 @@ class IgdbSearchesController < ApplicationController
   def show
     search = ::IgdbSearch.new
     @query = params[:q].to_s.strip
-    @results = @query.present? ? search.search_games(@query, limit: 20) : []
+    @page = params[:page].to_i
+    limit = 20
+    offset = @page * limit
+
+    @results = @query.present? ? search.search_games(@query, limit: , offset:) : []
   end
 end
