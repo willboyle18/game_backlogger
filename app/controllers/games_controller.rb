@@ -21,6 +21,7 @@ class GamesController < ApplicationController
     @game = Game.find_by(igdb_id:) || insert_game_from_igdb!(igdb_id)
     @platform_names = get_platforms(@game.platform_ids)
     @review = Review.new
+    @reviews = @game.reviews.includes(:user).order(created_at: :desc)
   end
 
   private
