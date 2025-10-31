@@ -21,6 +21,12 @@ class BacklogItemsController < ApplicationController
   end
 
   def update
+    @backlog_item = BacklogItem.find(params[:id])
+    if @backlog_item.update(backlog_item_params)
+      redirect_to backlog_items_path
+    else
+      redirect_back fallback_location: request.path
+    end
   end
 
 
@@ -33,7 +39,7 @@ class BacklogItemsController < ApplicationController
   private
 
   def backlog_item_params
-    params.require(:backlog_item).permit(:game_id)
+    params.require(:backlog_item).permit(:game_id, :status)
   end
 
   def insert_game_from_igdb!(igdb_id)

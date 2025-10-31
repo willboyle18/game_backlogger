@@ -12,7 +12,14 @@
           <%= link_to item.game.name, game_path(item.game.igdb_id),
                       class: "font-medium text-slate-800 hover:underline" %>
 
-          Status: <%= item.status.humanize %>
+          Status:
+          <%= form_with model: item, url: backlog_item_path(item), method: :patch, local: true do |f| %>
+            <%= f.select :status,
+                         BacklogItem.statuses.keys.map { |s| [s.humanize, s] },
+                         { selected: item.status },
+                         class: "border rounded p-1 text-sm",
+                         onchange: "this.form.submit()" %>
+          <% end %>
 
           <%= button_to "Remove",
                         backlog_item_path(item),
