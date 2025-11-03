@@ -51,7 +51,7 @@ class FriendsController < ApplicationController
     @friend = User.find(friend_id)
     @backlog_items = @friend.backlog_items.includes(:game).order(created_at: :desc)
     @reviews = @friend.reviews.includes(:game).order(created_at: :desc)
-    @comments = @friend.received_comments
+    @comments = @friend.received_comments.order(created_at: :desc)
   end
 
   def update

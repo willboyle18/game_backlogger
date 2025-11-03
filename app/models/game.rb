@@ -2,7 +2,9 @@ class Game < ApplicationRecord
   has_many :backlog_items, dependent: :destroy
   has_many :users, through: :backlog_items
 
-  has_many :reviews, dependent: :destroy
+  has_many :reviews,
+           dependent: :destroy
+
   has_many :reviewers, through: :reviews, source: :user
 
   validates :name, presence: true

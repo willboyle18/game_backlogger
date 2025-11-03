@@ -3,6 +3,7 @@ class BacklogItemsController < ApplicationController
   def index
     @backlog_items = Current.user.backlog_items.includes(:game).order(created_at: :desc)
     @reviews = Current.user.reviews.includes(:game).order(created_at: :desc)
+    @comments = Current.user.received_comments.order(created_at: :desc)
   end
 
   def create
