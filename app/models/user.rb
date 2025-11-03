@@ -14,6 +14,13 @@ class User < ApplicationRecord
 
   has_many :inverse_friends, class_name: "Friend", foreign_key: "friend_id", dependent: :destroy
 
+  has_many :comments, dependent: :destroy
+
+  has_many :received_comments,
+           as: :commentable,
+           class_name: "Comment",
+           dependent: :destroy
+
   validates :username, presence: true, uniqueness: true
   validates :email_address, presence: true, uniqueness: true
   validates :password, confirmation: true
