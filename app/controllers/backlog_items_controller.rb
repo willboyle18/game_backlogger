@@ -50,7 +50,7 @@ class BacklogItemsController < ApplicationController
         g.name = data["name"]
         g.slug = data["slug"]
         g.first_release_date = data["first_release_date"]
-        g.cover_image_id = data.dig("cover","image_id")
+        g.cover_image_id = data.dig("cover", "image_id")
         g.rating = data["total_rating"]
         g.summary = data["summary"]
         g.platform_ids = Array(data["platforms"]).map { _1["id"] }

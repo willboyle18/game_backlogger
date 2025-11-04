@@ -31,7 +31,7 @@ class GamesController < ApplicationController
     return [] if ids.empty?
 
     plats = IgdbSearch.new.platforms_by_ids(ids, fields: %w[id name abbreviation])
-    by_id = plats.to_h { |p| [p["id"], (p["name"].presence).to_s] }
+    by_id = plats.to_h { |p| [ p["id"], (p["name"].presence).to_s ] }
     ids.filter_map { |id| by_id[id].presence }
   end
 
@@ -43,7 +43,7 @@ class GamesController < ApplicationController
         g.name = data["name"]
         g.slug = data["slug"]
         g.first_release_date = data["first_release_date"]
-        g.cover_image_id = data.dig("cover","image_id")
+        g.cover_image_id = data.dig("cover", "image_id")
         g.rating = data["total_rating"]
         g.summary = data["summary"]
         g.platform_ids = Array(data["platforms"]).map { _1["id"] }

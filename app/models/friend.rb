@@ -6,8 +6,8 @@ class Friend < ApplicationRecord
   validate :not_duplicate_in_reverse
 
 
-  scope :pending, -> {where(status: "pending")}
-  scope :accepted, -> {where(status: "accepted")}
+  scope :pending, -> { where(status: "pending") }
+  scope :accepted, -> { where(status: "accepted") }
 
 
   def not_duplicate_in_reverse

@@ -65,7 +65,6 @@ class FriendsController < ApplicationController
       format.turbo_stream
       format.html { redirect_to friends_path }
     end
-
   end
 
   def destroy

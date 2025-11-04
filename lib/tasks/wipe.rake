@@ -18,4 +18,3 @@ namespace :wipe do
     puts "✓ Wiped backlog_items and games."
   end
 end
-

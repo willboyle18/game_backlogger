@@ -12,14 +12,14 @@ Rails.application.routes.draw do
   resources :backlog_items
   resources :games, param: :igdb_id do
     resources :reviews do
-      resources :comments, only: [:create]
+      resources :comments, only: [ :create ]
     end
   end
   get "friends/search", to: "friends#search", as: :search_friends
   resources :friends
-  resource :registration, only: [:new, :create]
+  resource :registration, only: [ :new, :create ]
   resources :users do
-    resources :comments, only: [:create]
+    resources :comments, only: [ :create ]
   end
   root "backlog_items#index"
 

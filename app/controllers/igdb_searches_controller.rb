@@ -8,6 +8,6 @@ class IgdbSearchesController < ApplicationController
     limit = 20
     offset = @page * limit
 
-    @results = @query.present? ? search.search_games(@query, limit: , offset:) : []
+    @results = @query.present? ? search.search_games(@query, limit:, offset:) : []
   end
 end

@@ -68,7 +68,7 @@ class IgdbSearch
     end
   end
 
-  def platforms_by_ids(ids, fields: 'id, name')
+  def platforms_by_ids(ids, fields: "id, name")
     ids = Array(ids).compact.map { |x| Integer(x) rescue nil }.compact.uniq
     return [] if ids.empty?
 
@@ -91,5 +91,4 @@ class IgdbSearch
       JSON.parse(res.body)
     end
   end
-
 end
