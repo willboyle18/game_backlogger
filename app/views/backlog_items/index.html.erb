@@ -30,34 +30,10 @@
       <% end %>
     </ul>
   <% end %>
-</div>
 
-<div class="mb-8">
-  <h1>Reviews</h1>
-  <% if @reviews.any? %>
-    <ul class="space-y-4">
-      <% @reviews.each do |review| %>
-        <%= link_to game_review_path(review.game.igdb_id, review),
-                    class: "block rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition" do %>
-          <li class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-            <div class="flex justify-between items-center">
-              <span class="font-medium text-slate-900"><%= review.user.username %></span>
-              <span class="text-sm text-slate-500"><%= time_ago_in_words(review.created_at) %> ago</span>
-              <span class="font-medium text-slate-900"><%= review.game.name %></span>
-            </div>
-
-            <p class="mt-2 text-slate-700 whitespace-pre-wrap"><%= review.body %></p>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  <% else %>
-    <p class="text-slate-600">You have not left any reviews yet!</p>
-  <% end %>
-</div>
-
-<div class="mb-8">
-  <h1>Profile Comments</h1>
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-semibold tracking-tight">Profile Comments</h1>
+  </div>
   <% if @comments.any? %>
     <ul class="space-y-4">
       <% @comments.each do |comment| %>
@@ -73,13 +49,39 @@
   <% else %>
     <p class="text-slate-600">You have not received any comments yet!</p>
   <% end %>
+
+  <%= form_with model: [Current.user, Comment.new] do |f| %>
+    <%= f.text_area :body,
+                    placeholder: "Leave a comment...",
+                    rows: 6, cols: 60,
+                    class: "border border-slate-300 rounded-md px-3 py-2 w-full" %>
+    <%= f.submit "Post comment",
+                 class: "bg-blue-600 hover:bg-blue-500 text-white rounded-md px-4 py-2 cursor-pointer mt-2" %>
+  <% end %>
+
 </div>
 
-<%= form_with model: [Current.user, Comment.new] do |f| %>
-  <%= f.text_area :body,
-                  placeholder: "Leave a comment...",
-                  rows: 6, cols: 60,
-                  class: "border border-slate-300 rounded-md px-3 py-2 w-full" %>
-  <%= f.submit "Post comment",
-               class: "bg-blue-600 hover:bg-blue-500 text-white rounded-md px-4 py-2 cursor-pointer mt-2" %>
-<% end %>
+<div class="mb-8">
+  <div class="flex items-center justify-between mb-4">
+    <h1 class="text-2xl font-semibold tracking-tight">Reviews</h1>
+  </div>
+  <% if @reviews.any? %>
+    <ul class="space-y-4">
+      <% @reviews.each do |review| %>
+        <%= link_to game_review_path(review.game.igdb_id, review),
+                    class: "block rounded-lg border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition" do %>
+          <li class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="flex justify-between items-center">
+              <span class="font-medium text-slate-900"><%= review.game.name %></span>
+              <span class="text-sm text-slate-500"><%= time_ago_in_words(review.created_at) %> ago</span>
+            </div>
+
+            <p class="mt-2 text-slate-700 whitespace-pre-wrap"><%= review.body %></p>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-slate-600">You have not left any reviews yet!</p>
+  <% end %>
+</div>
