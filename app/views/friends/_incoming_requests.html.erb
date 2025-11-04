@@ -1,12 +1,16 @@
 <!-- Incoming -->
 <section id="incoming_requests" class="mb-8">
   <h2 class="text-xl font-semibold mb-2">Incoming Requests</h2>
-  <% @incoming_requests.each do |req| %>
-    <div class="flex items-center justify-between">
-      <span><%= req.username %></span>
-      <% friendship = Friend.find_by(user: Current.user, friend: req) ||
-                      Friend.find_by(user: req, friend: Current.user) %>
-      <%= button_to "Accept", friend_path(friendship), method: :patch, class: "cursor-pointer text-green-600" %>
-    </div>
+  <% if @incoming_requests.any? %>
+    <% @incoming_requests.each do |req| %>
+      <div class="flex items-center justify-between">
+        <span><%= req.username %></span>
+        <% friendship = Friend.find_by(user: Current.user, friend: req) ||
+                        Friend.find_by(user: req, friend: Current.user) %>
+        <%= button_to "Accept", friend_path(friendship), method: :patch, class: "cursor-pointer text-green-600" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-slate-600">You have no incoming requests</p>
   <% end %>
 </section>

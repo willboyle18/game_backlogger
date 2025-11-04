@@ -1,7 +1,11 @@
 <!-- Outgoing -->
 <section id="outgoing_requests" class="mb-8">
   <h2 class="text-xl font-semibold mb-2">Outgoing Requests</h2>
-  <% @outgoing_requests.each do |req| %>
-    <p><%= req.username %> (pending)</p>
+  <% if @outgoing_requests.any? %>
+    <% @outgoing_requests.each do |req| %>
+      <p><%= req.username %> (pending)</p>
+    <% end %>
+  <% else %>
+    <p class="text-slate-600">You have no outgoing requests</p>
   <% end %>
 </section>

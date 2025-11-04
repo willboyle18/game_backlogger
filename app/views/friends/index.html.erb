@@ -1,27 +1,31 @@
-<h1 class="text-2xl font-bold mb-4">Friends</h1>
+<div class="max-w-3xl mx-auto space-y-10">
+  <h1 class="text-2xl font-bold mb-4">Friends</h1>
 
+  <%= render partial: "current_friends", locals: { current_friends: @current_friends } %>
+  <%= render partial: "incoming_requests", locals: { incoming_requests: @incoming_requests } %>
+  <%= render partial: "outgoing_requests", locals: { outgoing_requests: @outgoing_requests } %>
 
-<%= render partial: "current_friends", locals: { current_friends: @current_friends } %>
-<%= render partial: "incoming_requests", locals: { incoming_requests: @incoming_requests } %>
-<%= render partial: "outgoing_requests", locals: { outgoing_requests: @outgoing_requests } %>
+</div>
 
-<!-- Search -->
-<section>
-  <h2 class="text-xl font-semibold mb-2">Search Users</h2>
-  <%= form_with url: search_friends_path, method: :get, local: true do |f| %>
-    <%= f.text_field :q, placeholder: "Search email address...", class: "border rounded p-2" %>
-    <%= f.submit "Search", class: "bg-blue-500 text-white px-3 py-1 rounded" %>
-  <% end %>
+<div class="max-w-3xl mx-auto space-y-10">
+  <!-- Search -->
+  <section>
+    <h1 class="text-2xl font-bold mb-4">Search Users</h1>
+    <%= form_with url: search_friends_path, method: :get, local: true do |f| %>
+      <%= f.text_field :q, placeholder: "Search email address...", class: "border rounded p-2" %>
+      <%= f.submit "Search", class: "bg-blue-500 text-white px-3 py-1 rounded" %>
+    <% end %>
 
-  <% if @users.present? %>
-    <ul class="mt-4">
-      <% @users.each do |user| %>
-        <li class="flex justify-between border-b py-2">
-          <span><%= user.username %></span>
-          <%= button_to "Add Friend", friends_path(friend_id: user.id),
-                        method: :post, class: "cursor-pointer bg-gray-200 px-2 py-1 rounded hover:bg-gray-300" %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-</section>
+    <% if @users.present? %>
+      <ul class="mt-4">
+        <% @users.each do |user| %>
+          <li class="flex justify-between border-b py-2">
+            <span><%= user.username %></span>
+            <%= button_to "Add Friend", friends_path(friend_id: user.id),
+                          method: :post, class: "cursor-pointer bg-gray-200 px-2 py-1 rounded hover:bg-gray-300" %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
+</div>
