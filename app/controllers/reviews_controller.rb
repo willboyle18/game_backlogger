@@ -12,6 +12,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find(params[:id])
+    @comments = @review.comments.order(created_at: :desc)
+  end
+
   private
 
   def set_game
