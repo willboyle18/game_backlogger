@@ -84,7 +84,7 @@ production:
     url: <%= ENV["DATABASE_URL"] || "postgres://postgres:postgres@localhost:5432/game_backlogger_production" %>
     database: game_backlogger_production
     username: game_backlogger
-    password: <%= ENV["GAME_BACKLOGGER_DATABASE_PASSWORD"] %>
+    password: <%= ENV["GAME_BACKLOGGER_DATABASE_PASSWORD"] || "postgres" %>
   cache:
     <<: *primary_production
     database: game_backlogger_production_cache
