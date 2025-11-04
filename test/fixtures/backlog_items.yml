@@ -1,0 +1,9 @@
+one:
+  user: one
+  game: one
+  status: 0
+
+two:
+  user: two
+  game: two
+  status: 1

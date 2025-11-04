@@ -1,0 +1,11 @@
+one:
+  igdb_id: 1
+  name: "Test Game One"
+
+two:
+  igdb_id: 2
+  name: "Test Game Two"
+
+three:
+  igdb_id: 3
+  name: "Test Game Three"
