@@ -1,5 +1,5 @@
 <div class="mx-auto max-w-3xl mt-8 px-4">
-  <h1 class="text-2xl font-semibold tracking-tight mb-4">Search IGDB</h1>
+  <h1 class="text-2xl font-semibold tracking-tight mb-4">Search Games</h1>
 
   <%= form_with url: igdb_search_path, method: :get, local: true, class: "flex gap-2 mb-6" do %>
     <%= text_field_tag :q, @query, placeholder: "Type a game title…",

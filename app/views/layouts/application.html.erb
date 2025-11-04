@@ -34,7 +34,7 @@
           <% if authenticated? %>
             <%= button_to "Log out", session_path, method: :delete,
                           class: "inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
-            <%= link_to "Search IGDB", igdb_search_path,
+            <%= link_to "Search Games", igdb_search_path,
                         class: "inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
             <%= link_to "View Backlog", backlog_items_path,
                         class: "inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
