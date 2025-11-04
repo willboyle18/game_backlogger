@@ -88,7 +88,8 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-          url: "postgres://postgres:postgres@localhost:5432/game_backlogger_test"
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/game_backlogger_test
+          TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/game_backlogger_test
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test test:system
 
