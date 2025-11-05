@@ -4,7 +4,7 @@ A full-stack Ruby on Rails social networking web app for tracking your video gam
 
 ## Demo
 
-insert demo here
+![Game Backlogger Demo](media/game_backlogger_demo.gif)
 
 ## Features
 - Search games via the IGDB API (powered by Twitch)
